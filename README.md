@@ -1,4 +1,4 @@
-# corser
+# Corser
 Cross-browser extension for authorizing cross-origin resource sharing (CORS) requests.
 This extension can be installed on browsers supporting the WebExtensions API (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions)
 
