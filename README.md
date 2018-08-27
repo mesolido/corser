@@ -10,3 +10,7 @@ Following are the main features of the <strong>CORSER</strong> extension. It sta
 
 To manipulate HTTP headers, one has to register handlers (listeners) for events triggered by HTTP communications between web pages and web servers. 
 Each HTTP request that is intercepted in extensions go through a set of stages with dedicated events that can be listened, in order to take different actions on the HTTP headers ( https://developer.chrome.com/extensions/webRequest - https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest ). The request is assigned a unique identifier (Line 41), that remains the same at the different stages of the request. The response to the request is also assigned the same identifier. This helps to link a request to its response. Even in the case of preflighted requests, the two sequential requests and their responses are considered a single request and thus assigned the same identifier. 
+
+<h2>Intercepting HTTP requests</h2>
+The handler of the <code>onBeforeSendHeaders</code> event is the right place where to intercept and modify HTTP requests.
+Lines 25-28 shows how to intercept HTTP requests by registering a listener or handler for the \onBeforeSendHeaders\ event. The extension intercepts all  (<code><all_url></code>) headers (<code>requestHeaders</code>) of AJAX requests (type <code>xmlhttprequest</code>). The <code>requestListener</code> argument is a callback function or handler that will be invoked to manipulate the requests headers. Its definition is shown from Lines 32 to 46. 
