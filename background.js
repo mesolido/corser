@@ -1,20 +1,34 @@
-chrome = chrome != null ? chrome : browser;
 
+	// Cross-browser extension API
+chrome = chrome != null ? chrome : browser;
+	
+	// HTTP requests headers to record
 var corsRequestHeaders = {
 	"origin": "",
 	"access-control-request-method": "",
 	"access-control-request-headers": ""
 };
-
+	
+	// HTTP responses headers to modify
 var corsResponseHeaders = {
-	"access-control-allow-origin": "origin",
-	"access-control-allow-method": "access-control-request-method",
-	"access-control-allow-headers": "access-control-allow-headers",
+	"access-control-allow-origin": "",
+	"access-control-allow-method": "",
+	"access-control-allow-headers": "",
 	"access-control-allow-credentials": "true"
 }
-
+	
+	// Global object to keep track of HTTP requests
 var savedRequestsHeaders = {};
 
+
+	// Intercepting HTTP requests headers
+chrome.webRequest.onBeforeSendHeaders.addListener(requestListener, {
+   urls: ["<all_urls>"],
+   types: ["xmlhttprequest"]
+}, ["blocking", "requestHeaders"]);
+
+	
+	// Manipulating HTTP request headers
 var requestListener = function(details){
 	var lcorsHeaders = {}
 	var newRequestHeaders = []
@@ -27,10 +41,20 @@ var requestListener = function(details){
 		savedRequestsHeaders[details.requestId] = lcorsHeaders
 	}
 	return {
-        requestHeaders: details.requestHeaders
+        requestHeaders: newRequestHeaders
     };
 }
 
+
+	// Intercepting HTTP response headers
+chrome.webRequest.onHeadersReceived.addListener(responseListener, {
+    urls: ["<all_urls>"],
+    types: ["xmlhttprequest"]
+}, ["blocking", "responseHeaders"]);
+
+
+	
+	// Manipulating HTTP response headers
 var responseListener = function(details){
 	if(details.requestId in savedRequestsHeaders){
 		let newResponseHeaders = []
@@ -50,10 +74,6 @@ var responseListener = function(details){
 				case "access-control-request-method":
 					newResponseHeaders.push({
 						name: "Access-Control-Allow-Methods", 
-						value: savedRequestsHeaders[details.requestId][header]
-					});
-					newResponseHeaders.push({
-						name: "Allow", 
 						value: savedRequestsHeaders[details.requestId][header]
 					});
 					break;
@@ -78,15 +98,3 @@ var responseListener = function(details){
 		responseHeaders: details.responseHeaders
 	}
 }
-
-
-chrome.webRequest.onBeforeSendHeaders.addListener(requestListener, {
-   urls: ["<all_urls>"],
-   types: ['xmlhttprequest']
-}, ['blocking', 'requestHeaders']);
-
-
-chrome.webRequest.onHeadersReceived.addListener(responseListener, {
-    urls: ["<all_urls>"],
-    types: ['xmlhttprequest']
-}, ['blocking', 'responseHeaders']);
