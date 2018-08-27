@@ -28,6 +28,8 @@ After manipulating the response headers, we remove the recorded request headers 
 
 These modifications successfully authorize unauthorized CORS requests. % requests always successfull. 
 
-<strong>CORSER</strong> is now deployed on Chrome ( https://chrome.google.com/webstore/detail/corser/elgclnafddmkhhnhlfgfahgbahkginga ), Firefox ( https://addons.mozilla.org/en-US/firefox/addon/corser-addon/ ) and Opera ( https://addons.opera.com/en/extensions/details/corser-authorize-cors-requests/ ). 
+One can download the extension, custom, deploy and test it (in developer mode).
+
+One can also directly install the public version of <strong>CORSER</strong> available on Chrome ( https://chrome.google.com/webstore/detail/corser/elgclnafddmkhhnhlfgfahgbahkginga ), Firefox ( https://addons.mozilla.org/en-US/firefox/addon/corser-addon/ ) and Opera ( https://addons.opera.com/en/extensions/details/corser-authorize-cors-requests/ ). 
 
 Use it for testing purposes only
