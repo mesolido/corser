@@ -24,3 +24,10 @@ If the request was a cross-origin request, it means that we have previously save
 Then, to make the CORS request successfull, we start by removing any CORS response headers returned by the web server (Lines 61-65), among those that will be modified or added. Then, for each recorded request header, we add its dual response header by setting the appropriate values: the <code>Access-Control-Allow-Origin</code> header is added and set the value the recorded <code>Origin</code> header (Lines 68-73); the <code>Access-Control-Allow-Headers</code> header is added and assigned the value of the recorded <code>Access-Control-Request-Headers</code> header (Lines 74-79); the <code>Access-Control-Allow-Method</code> is added and set the value of the recorded <code>Access-Control-Request-Method</code> request; finally we add the <code>Access-Control-Allow-Credentials</code> response header, assigning it the value <code>true</code> (Lines 90-93). 
 
 After manipulating the response headers, we remove the recorded request headers from the global object <code>savedRequestsHeaders</code> (Line 95) and return the new response headers (Lines 97-99). (To be more precise, we could have removed the recorded request headers in the <code>onCompleted</code> (See https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest ).
+
+
+These modifications successfully authorize unauthorized CORS requests. % requests always successfull. 
+
+<strong>CORSER</strong> is now deployed on Chrome ( https://chrome.google.com/webstore/detail/corser/elgclnafddmkhhnhlfgfahgbahkginga ), Firefox ( https://addons.mozilla.org/en-US/firefox/addon/corser-addon/ ) and Opera ( https://addons.opera.com/en/extensions/details/corser-authorize-cors-requests/ ). 
+
+Use it for testing purposes only
