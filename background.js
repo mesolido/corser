@@ -41,7 +41,7 @@ var requestListener = function(details){
 		savedRequestsHeaders[details.requestId] = lcorsHeaders
 	}
 	return {
-        requestHeaders: newRequestHeaders
+        requestHeaders: details.requestHeaders
     };
 }
 
