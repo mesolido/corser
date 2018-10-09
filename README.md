@@ -26,8 +26,7 @@ Then, to make the CORS request successfull, we start by removing any CORS respon
 After manipulating the response headers, we remove the recorded request headers from the global object <code>savedRequestsHeaders</code> (Line 95) and return the new response headers (Lines 97-99). (To be more precise, we could have removed the recorded request headers in the <code>onCompleted</code> (See https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webRequest ).
 
 
-These modifications successfully authorize unauthorized CORS requests. % requests always successfull. 
-
+These modifications successfully authorize unauthorized CORS requests.
 One can download the extension, custom, deploy and test it (in developer mode).
 
 One can also directly install the public version of <strong>CORSER</strong> available on Chrome ( https://chrome.google.com/webstore/detail/corser/elgclnafddmkhhnhlfgfahgbahkginga ), Firefox ( https://addons.mozilla.org/en-US/firefox/addon/corser-addon/ ) and Opera ( https://addons.opera.com/en/extensions/details/corser-authorize-cors-requests/ ). 
