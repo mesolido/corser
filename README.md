@@ -13,7 +13,7 @@ Each HTTP request that is intercepted in extensions go through a set of stages w
 
 <h2>Intercepting HTTP requests</h2>
 The handler of the <code>onBeforeSendHeaders</code> event is the right place where to intercept and modify HTTP requests.
-Lines 25-28 shows how to intercept HTTP requests by registering a listener or handler for the \onBeforeSendHeaders\ event. The extension intercepts all  (<code>&lt;all_urls&gt;</code>) headers (<code>requestHeaders</code>) of AJAX requests (type <code>xmlhttprequest</code>). The <code>requestListener</code> argument is a callback function or handler that will be invoked to manipulate the requests headers. Its definition is shown from Lines 32 to 46. 
+Lines 25-28 shows how to intercept HTTP requests by registering a listener or handler for the <code>onBeforeSendHeaders</code> event. The extension intercepts all  (<code>&lt;all_urls&gt;</code>) headers (<code>requestHeaders</code>) of AJAX requests (type <code>xmlhttprequest</code>). The <code>requestListener</code> argument is a callback function or handler that will be invoked to manipulate the requests headers. Its definition is shown from Lines 32 to 46. 
 In this function, we simply record the values of any CORS request header found in the cross-origin request (Lines 36-38).
 The recorded request headers are then associated to the request unique identifier and saved in the global object <code>savedRequestsHeaders</code> (Line 41).
 
